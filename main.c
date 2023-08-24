@@ -20,10 +20,12 @@ int main(int argc, char *argv[])
 			{NULL, NULL}
 		};
 
+	int current_value = 0;
 	usage = "USAGE: monty file\n";
 	buf = NULL;
 	stack = NULL;
 	len = 0;
+
 
 	if (argc < 2)
 	{

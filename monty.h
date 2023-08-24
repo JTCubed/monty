@@ -43,12 +43,5 @@ char **create_tokens(char *str);
 void push_op(stack_t **stack, unsigned int line_number);
 void pall_op(stack_t **stack, unsigned int line_number);
 
-instruction_t ops[] =
-{
-	{"push", (void (*)(stack_t **, unsigned int))push_op},
-	{"pall", pall_op},
-	{NULL, NULL}
-};
-
-int current_value = 0;
+extern int current_value;
 #endif
