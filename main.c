@@ -2,6 +2,7 @@
 #include "monty.h"
 #include <stdio.h>
 
+
 int main(int argc, char *argv[])
 {
 	stack_t *stack;
@@ -20,14 +21,14 @@ int main(int argc, char *argv[])
 			{NULL, NULL}
 		};
 
-	int current_value = 0;
+
 	usage = "USAGE: monty file\n";
 	buf = NULL;
 	stack = NULL;
 	len = 0;
 
 
-	if (argc < 2)
+	if (argc != 2)
 	{
 		write(STDERR_FILENO, usage, strlen(usage));
 		exit(EXIT_FAILURE);
@@ -54,13 +55,14 @@ int main(int argc, char *argv[])
 				{
 					current_value = atoi(arglist[1]);
 					ops[i].f(&stack, read);
+					printf("%d %d\n",linecount, current_value);
 				}
 				else if (strcmp(ops[i].opcode, "pall") == 0)
 				{
 					pall_op(&stack, read);
 				}
 				else
-					fprintf(stderr, "L%d: unknown instruction <opcode>", linecount);
+					fprintf(stderr, "L%d: unknown instruction %s\n", linecount, arglist[1]);
 			}
 		linecount++;
  	}

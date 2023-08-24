@@ -1,8 +1,11 @@
 #include "monty.h"
 
+int current_value = 0;
+
 void push_op(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new;
+	int current_value;
 	(void)line_number;
 
 	new = malloc(sizeof(stack_t));
@@ -35,11 +38,3 @@ void pall_op(stack_t **stack, unsigned int line_number)
 		current = current->next;
 	}
 }
-
-/*instruction_t ops[] =
-{
-	{"push", (void (*)(stack_t **, unsigned int))push_op},
-	{"pall", pall_op},
-	{NULL, NULL}
-};
-*/
