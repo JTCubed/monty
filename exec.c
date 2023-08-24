@@ -5,7 +5,6 @@ int current_value = 0;
 void push_op(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new;
-	int current_value;
 	(void)line_number;
 
 	new = malloc(sizeof(stack_t));

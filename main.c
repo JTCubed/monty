@@ -55,14 +55,13 @@ int main(int argc, char *argv[])
 				{
 					current_value = atoi(arglist[1]);
 					ops[i].f(&stack, read);
-					printf("%d %d\n",linecount, current_value);
 				}
 				else if (strcmp(ops[i].opcode, "pall") == 0)
 				{
 					pall_op(&stack, read);
 				}
 				else
-					fprintf(stderr, "L%d: unknown instruction %s\n", linecount, arglist[1]);
+					fprintf(stderr, "L%d: unknown instruction %s\n", linecount, arglist[0]);
 			}
 		linecount++;
  	}
