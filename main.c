@@ -83,11 +83,10 @@ int main(int argc, char *argv[])
 
 		linecount++;
 		line++;
-		free(linecpy);
-		free(buf);
+
 
 	}
-	free_tokens(arglist);
+
 	fclose(fp);
 	return (0);
 }
