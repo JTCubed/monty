@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 	ssize_t read;
 	char *linecpy;
 	char **arglist;
-	int i, linecount;
+	int i, linecount, opcode_found;
 	instruction_t ops[] =
 		{
 			{"push", (void (*)(stack_t **, unsigned int))push_op},
@@ -24,6 +24,7 @@ int main(int argc, char *argv[])
 
 	usage = "USAGE: monty file\n";
 	buf = NULL;
+	opcode_found = 0;
 	stack = NULL;
 	len = 0;
 
@@ -55,14 +56,18 @@ int main(int argc, char *argv[])
 				{
 					current_value = atoi(arglist[1]);
 					ops[i].f(&stack, read);
+					opcode_found = 1;
+					break;
 				}
 				else if (strcmp(ops[i].opcode, "pall") == 0)
 				{
 					pall_op(&stack, read);
+					opcode_found = 1;
+					break;
 				}
-				else
-					fprintf(stderr, "L%d: unknown instruction %s\n", linecount, arglist[0]);
-			}
+			}if (!opcode_found)
+				 fprintf(stderr, "L%d: unknown instruction %s\n", linecount, arglist[0]);
+
 		linecount++;
  	}
 
