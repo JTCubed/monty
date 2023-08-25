@@ -43,5 +43,9 @@ char **create_tokens(char *str);
 void push_op(stack_t **stack, unsigned int line_number);
 void pall_op(stack_t **stack, unsigned int line_number);
 int _isdigit(char *str);
+
 extern int current_value;
+void pop_op(stack_t **stack, unsigned int line_number);
+void pint_op(stack_t **stack, unsigned int line_number);
+
 #endif

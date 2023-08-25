@@ -14,10 +14,13 @@ int main(int argc, char *argv[])
 	char *linecpy;
 	char **arglist;
 	int i, linecount, opcode_found;
+	unsigned int line;
 	instruction_t ops[] =
 		{
 			{"push", (void (*)(stack_t **, unsigned int))push_op},
 			{"pall", pall_op},
+			{"pint", pint_op},
+			{"pop", pop_op},
 			{NULL, NULL}
 		};
 
@@ -44,6 +47,7 @@ int main(int argc, char *argv[])
 	}
 
 	linecount = 1;
+	line = 1;
 	while ((read = getline(&buf, &len, fp)) != -1)
 	{
 
@@ -72,10 +76,23 @@ int main(int argc, char *argv[])
 					opcode_found = 1;
 					break;
 				}
+				else if (strcmp(ops[i].opcode, "pint") == 0)
+				{
+					pint_op(&stack, read);
+					opcode_found = 1;
+					break;
+				}
+				else if (strcmp(ops[i].opcode, "pop") == 0)
+				{
+					pop_op(&stack, read);
+					opcode_found = 1;
+					break;
+				}
 			}if (!opcode_found)
 				 fprintf(stderr, "L%d: unknown instruction %s\n", linecount, arglist[0]);
 
 		linecount++;
+		line++;
  	}
 
 	fclose(fp);

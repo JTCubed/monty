@@ -37,3 +37,30 @@ void pall_op(stack_t **stack, unsigned int line_number)
 		current = current->next;
 	}
 }
+
+void pint_op(stack_t **stack, unsigned int line_number)
+{
+	if (!stack)
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty", line_number);
+		exit(EXIT_FAILURE);
+	}
+	printf("%d\n", (*stack)->n);
+}
+
+void pop_op(stack_t **stack, unsigned int line_number)
+{
+	stack_t *temp;
+
+	if (!stack)
+	{
+		fprintf(stderr, "L%d: can't pop an empty stack", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	temp = *stack;
+	*stack = (*stack)->next;
+	if (*stack)
+		(*stack)->prev = NULL;
+	free(temp);
+}
