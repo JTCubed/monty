@@ -21,6 +21,9 @@ int main(int argc, char *argv[])
 			{"pall", pall_op},
 			{"pint", pint_op},
 			{"pop", pop_op},
+			{"swap", swap_op},
+			{"add", add_op},
+			{"nop", nop_op},
 			{NULL, NULL}
 		};
 
@@ -56,38 +59,24 @@ int main(int argc, char *argv[])
 		if (arglist[0] != NULL)
 			for (i = 0; ops[i].opcode; i++)
 			{
-				if (strcmp(ops[i].opcode, "push") == 0 && arglist[1] != NULL)
+				if (strcmp(ops[i].opcode, arglist[0]) == 0)
 				{
-					if (_isdigit(arglist[1]) == 1)
+					opcode_found = 1;
+					if (strcmp(ops[i].opcode, "push") == 0)
 					{
-						current_value = atoi(arglist[1]);
-						ops[i].f(&stack, read);
-						opcode_found = 1;
-						break;
-					}else
-					{
-						fprintf(stderr, "L%d: usage: push integer\n", linecount);
-						exit(EXIT_FAILURE);
+						if (arglist[1] != NULL && _isdigit(arglist[1]) == 1)
+							current_value = atoi(arglist[1]);
+						else
+						{
+							fprintf(stderr, "L%d: usage: push integer\n", linecount);
+							exit(EXIT_FAILURE);
+						}
 					}
-				}
-				else if (strcmp(ops[i].opcode, "pall") == 0)
-				{
-					ops[i].f(&stack, read);
-					opcode_found = 1;
-					break;
-				}
-				else if (strcmp(ops[i].opcode, "pint") == 0)
-				{
 					ops[i].f(&stack, line);
-					opcode_found = 1;
 					break;
 				}
-				else if (strcmp(ops[i].opcode, "pop") == 0)
-				{
-					ops[i].f(&stack, line);
-					opcode_found = 1;
-					break;
-				}
+
+
 			}if (!opcode_found)
 				 fprintf(stderr, "L%d: unknown instruction %s\n", linecount, arglist[0]);
 
