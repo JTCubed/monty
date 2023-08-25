@@ -72,19 +72,19 @@ int main(int argc, char *argv[])
 				}
 				else if (strcmp(ops[i].opcode, "pall") == 0)
 				{
-					pall_op(&stack, read);
+					ops[i].f(&stack, read);
 					opcode_found = 1;
 					break;
 				}
 				else if (strcmp(ops[i].opcode, "pint") == 0)
 				{
-					pint_op(&stack, read);
+					ops[i].f(&stack, line);
 					opcode_found = 1;
 					break;
 				}
 				else if (strcmp(ops[i].opcode, "pop") == 0)
 				{
-					pop_op(&stack, read);
+					ops[i].f(&stack, line);
 					opcode_found = 1;
 					break;
 				}

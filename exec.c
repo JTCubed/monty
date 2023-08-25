@@ -40,7 +40,7 @@ void pall_op(stack_t **stack, unsigned int line_number)
 
 void pint_op(stack_t **stack, unsigned int line_number)
 {
-	if (!stack)
+	if (!(*stack))
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty", line_number);
 		exit(EXIT_FAILURE);
@@ -52,7 +52,7 @@ void pop_op(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp;
 
-	if (!stack)
+	if (!(*stack))
 	{
 		fprintf(stderr, "L%d: can't pop an empty stack", line_number);
 		exit(EXIT_FAILURE);
