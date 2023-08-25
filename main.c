@@ -6,8 +6,7 @@
 int main(int argc, char *argv[])
 {
 	stack_t *stack;
-	char *usage;
-	char *buf;
+	char *buf, *usage;
 	FILE *fp;
 	size_t len;
 	ssize_t read;
@@ -24,6 +23,8 @@ int main(int argc, char *argv[])
 			{"swap", swap_op},
 			{"add", add_op},
 			{"nop", nop_op},
+			{"div", div_op},
+			{"mul", mul_op},
 			{NULL, NULL}
 		};
 
@@ -82,8 +83,11 @@ int main(int argc, char *argv[])
 
 		linecount++;
 		line++;
- 	}
+		free(linecpy);
+		free(buf);
 
+	}
+	free_tokens(arglist);
 	fclose(fp);
 	return (0);
 }
