@@ -54,10 +54,17 @@ int main(int argc, char *argv[])
 			{
 				if (strcmp(ops[i].opcode, "push") == 0 && arglist[1] != NULL)
 				{
-					current_value = atoi(arglist[1]);
-					ops[i].f(&stack, read);
-					opcode_found = 1;
-					break;
+					if (_isdigit(arglist[1]) == 1)
+					{
+						current_value = atoi(arglist[1]);
+						ops[i].f(&stack, read);
+						opcode_found = 1;
+						break;
+					}else
+					{
+						fprintf(stderr, "L%d: usage: push integer\n", linecount);
+						exit(EXIT_FAILURE);
+					}
 				}
 				else if (strcmp(ops[i].opcode, "pall") == 0)
 				{

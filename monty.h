@@ -42,6 +42,6 @@ int main(int argc, char *argv[]);
 char **create_tokens(char *str);
 void push_op(stack_t **stack, unsigned int line_number);
 void pall_op(stack_t **stack, unsigned int line_number);
-
+int _isdigit(char *str);
 extern int current_value;
 #endif
