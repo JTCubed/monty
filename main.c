@@ -67,6 +67,11 @@ int main(int argc, char *argv[])
 					{
 						if (arglist[1] != NULL && _isdigit(arglist[1]) == 1)
 							current_value = atoi(arglist[1]);
+						else if (arglist[1][0] == '-')
+						{
+							if (_isdigit(&arglist[1][1]) == 1)
+								current_value = atoi(arglist[1]);
+						}
 						else
 						{
 							fprintf(stderr, "L%d: usage: push integer\n", linecount);

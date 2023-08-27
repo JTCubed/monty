@@ -54,4 +54,6 @@ void free_tokens(char **tokens);
 void mul_op(stack_t **stack, unsigned int line_number);
 void div_op(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t **stack);
+char *_strcpy(char *dest, char *src);
+char *_strdup(char *str);
 #endif
