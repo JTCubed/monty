@@ -70,6 +70,7 @@ int main(int argc, char *argv[])
 						else
 						{
 							fprintf(stderr, "L%d: usage: push integer\n", linecount);
+							free_tokens(arglist);
 							exit(EXIT_FAILURE);
 						}
 					}
@@ -83,10 +84,14 @@ int main(int argc, char *argv[])
 
 		linecount++;
 		line++;
+/*		free(linecpy);
+ */		free_tokens(arglist);
 
 
 	}
 
+	free(buf);
+	free_stack(&stack);
 	fclose(fp);
 	return (0);
 }

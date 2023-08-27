@@ -53,4 +53,5 @@ void nop_op(stack_t **stack, unsigned int line_number);
 void free_tokens(char **tokens);
 void mul_op(stack_t **stack, unsigned int line_number);
 void div_op(stack_t **stack, unsigned int line_number);
+void free_stack(stack_t **stack);
 #endif
