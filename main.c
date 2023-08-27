@@ -65,6 +65,14 @@ int main(int argc, char *argv[])
 					opcode_found = 1;
 					if (strcmp(ops[i].opcode, "push") == 0)
 					{
+						if (arglist[1] == NULL)
+						{
+							fprintf(stderr, "L%d: usage: push integer\n", linecount);
+							free_tokens(arglist);
+							free(buf);
+							fclose(fp);
+							exit(EXIT_FAILURE);
+						}
 						if (arglist[1] != NULL && _isdigit(arglist[1]) == 1)
 							current_value = atoi(arglist[1]);
 						else if (arglist[1][0] == '-')
